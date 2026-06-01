@@ -1,6 +1,6 @@
 # Applied Project 2 - Reinforcement Learning from Human Feedback
 
-**Course:** Reinforcement Learning, EE-568 / EE 58, EPFL  
+**Course:** Reinforcement Learning, EE-568, EPFL  
 **Instructor:** Prof. Volkan Cevher  
 **Assignment:** Applied Project 2 — Reinforcement Learning from Human Feedback  
 
