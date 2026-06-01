@@ -12,7 +12,7 @@ Preference-based RL project comparing PPO-RLHF and DPO across FrozenLake, CartPo
 
 This repository contains the code, notebooks, saved results, and report figures for Applied Project 2 in the EPFL Reinforcement Learning course. The project compares **PPO-based reinforcement learning from human feedback (PPO-RLHF)** with **Direct Preference Optimization (DPO)** under matched synthetic preference-data conditions.
 
-The main goal is to understand when a reward-model-based RLHF pipeline and a direct preference-optimization objective behave differently. For each environment, we generate preference pairs from a stronger policy \(\pi_1\) and a weaker policy \(\pi_2\). The better trajectory is labeled as preferred, and the worse trajectory is labeled as rejected. Both PPO-RLHF and DPO are then trained from these preferences and evaluated over **three random seeds**.
+The main goal is to understand when a reward-model-based RLHF pipeline and a direct preference-optimization objective behave differently. For each environment, we generate preference pairs from a stronger policy $\pi_1$ and a weaker policy $\pi_2$. The better trajectory is labeled as preferred, and the worse trajectory is labeled as rejected. Both PPO-RLHF and DPO are then trained from these preferences and evaluated over **three random seeds**.
 
 We study five environments with different state and action-space structures:
 
@@ -24,9 +24,9 @@ We study five environments with different state and action-space structures:
 
 The experiments analyze:
 
-- final performance of \(\pi_1\), \(\pi_2\), PPO-RLHF, and DPO;
-- sensitivity to preference dataset size \(K\);
-- sensitivity to the preference-optimization parameter \(\beta\);
+- final performance of $\pi_1$, $\pi_2$, PPO-RLHF, and DPO;
+- sensitivity to preference dataset size $K$;
+- sensitivity to the preference-optimization parameter $\beta$;
 - differences between discrete-action and continuous-action environments;
 - limitations of trajectory-level preferences.
 
@@ -151,7 +151,7 @@ The files in `figs/separate/` contain individual subpanels without A/B/C/D corne
 
 The table below summarizes the main final-performance values reported in the project. Values are average environment returns over three random seeds.
 
-| Environment | Reference policy \(R_{\pi_{\mathrm{ref}}}\) | PPO-RLHF | DPO |
+| Environment | Reference policy $R_{\pi_{\mathrm{ref}}}$ | PPO-RLHF | DPO |
 |---|---:|---:|---:|
 | FrozenLake | 89 | 91 | 100 |
 | CartPole | 382 | 497 | 500 |
@@ -164,8 +164,8 @@ Main observations:
 - **FrozenLake:** DPO reaches near-perfect success, while PPO-RLHF remains slightly lower.
 - **CartPole:** both methods recover near-optimal performance.
 - **Acrobot:** both methods recover near-expert behavior despite a weak reference policy.
-- **Pendulum:** PPO-RLHF performs better because the reward model gives a denser optimization signal; trajectory-level DPO remains close to \(\pi_2\).
-- **MountainCarContinuous:** both methods reach high reward, with DPO showing more consistent final performance and PPO-RLHF showing stronger \(\beta\)-sensitivity.
+- **Pendulum:** PPO-RLHF performs better because the reward model gives a denser optimization signal; trajectory-level DPO remains close to $\pi_2$.
+- **MountainCarContinuous:** both methods reach high reward, with DPO showing more consistent final performance and PPO-RLHF showing stronger $\beta$-sensitivity.
 
 ## Method
 
@@ -173,16 +173,18 @@ Main observations:
 
 For each environment, preference data is generated from two policies:
 
-- \(\pi_1\): stronger or expert policy.
-- \(\pi_2\): weaker policy.
+- $\pi_1$: stronger or expert policy.
+- $\pi_2$: weaker policy.
 
 For each rollout pair, the trajectory with higher environment return is labeled as preferred:
 
-\[
+
+$$
 \tau^+ = \arg\max_{\tau \in \{\tau_1, \tau_2\}} R(\tau),
 \qquad
 \tau^- = \arg\min_{\tau \in \{\tau_1, \tau_2\}} R(\tau).
-\]
+$$
+
 
 In binary or sparse-reward environments, equal-return pairs are discarded because they do not provide a clear preference signal.
 
@@ -192,20 +194,20 @@ The PPO-RLHF pipeline follows the reward-model-based preference-learning setup:
 
 1. train a reward model from preferred/rejected trajectory pairs;
 2. optimize a policy with PPO or PPO-style updates using the learned reward;
-3. optionally regularize the policy toward a reference policy \(\pi_{\mathrm{ref}}\).
+3. optionally regularize the policy toward a reference policy $\pi_{\mathrm{ref}}$.
 
 This gives PPO-RLHF a learned intermediate reward signal, which can help in settings where trajectory-level preferences are too coarse.
 
 ### DPO
 
-DPO optimizes the policy directly from preferred/rejected trajectory pairs relative to the reference policy. It avoids explicit reward-model training, but is more directly affected by preference-data coverage, reference-policy quality, and the choice of \(\beta\).
+DPO optimizes the policy directly from preferred/rejected trajectory pairs relative to the reference policy. It avoids explicit reward-model training, but is more directly affected by preference-data coverage, reference-policy quality, and the choice of $\beta$.
 
 ## Reproducibility notes
 
 - Main results are reported over **three random seeds**.
 - The main sweeps vary:
-  - preference dataset size \(K\);
-  - regularization/alignment parameter \(\beta\).
+  - preference dataset size $K$;
+  - regularization/alignment parameter $\beta$.
 - FrozenLake includes saved CSV logs in `frozen_lake/csv/`.
 - Final figures are saved as both `.pdf` and `.png`.
 - Figure legends and text use the convention **PPO-RLHF**.
