@@ -37,6 +37,7 @@ The experiments analyze:
 ├── README.md
 ├── requirements.txt
 ├── paper_poster.mplstyle
+├── plots_uniform.ipynb
 │
 ├── figs/
 │   ├── a1.PNG
@@ -78,7 +79,6 @@ The experiments analyze:
 │       └── mountaincarcontinuous_D.pdf / .png
 │
 ├── frozen_lake/
-│   ├── plots_unifrom.ipynb
 │   ├── rlhf_dpo_frozenlake_notebook.ipynb
 │   └── csv/
 │       ├── frozenlake_main_results_summary.csv
