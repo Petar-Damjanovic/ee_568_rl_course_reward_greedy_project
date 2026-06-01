@@ -1,4 +1,4 @@
-# PPO-RLHF vs DPO for Preference-Based Reinforcement Learning
+# Applied Project 2 - Reinforcement Learning from Human Feedback
 
 **Course:** Reinforcement Learning, EE-568 / EE 58, EPFL  
 **Instructor:** Prof. Volkan Cevher  
