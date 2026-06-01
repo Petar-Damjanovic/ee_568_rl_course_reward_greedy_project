@@ -157,7 +157,8 @@ The table below summarizes the main final-performance values reported in the pro
 | CartPole | 382 | 497 | 500 |
 | Acrobot | -228 | -83 | -85 |
 | Pendulum | -398 | -220 | -389 |
-| MountainCarContinuous | 89 | 94 | 95 |
+| MountainCarContinuous | 90 | 94 | 95 |
+
 
 Main observations:
 
